@@ -7,7 +7,7 @@ function Setupcommands(bot){
     bot.setMyCommands(mycmds);
 }
 
-var enableecho = false;
+let enableecho = false;
 function CommandHandler(bot,msg) {
     if(enableecho)
     {
@@ -15,7 +15,6 @@ function CommandHandler(bot,msg) {
         if(!iscommand)
         bot.sendMessage(msg.chat.id, msg.text);
     }
-    
     try{
         switch(msg.text){
             case '/start':
@@ -44,4 +43,3 @@ function CommandHandler(bot,msg) {
 }
 module.exports = Setupcommands;
 module.exports = CommandHandler;
-module.exports.enableecho = enableecho
