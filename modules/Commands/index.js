@@ -3,26 +3,24 @@ const mycmds = [
     {command: '/info', description: 'Info'},
     {command: '/help', description: 'Help'}
 ]
-function setupcommands(bot){
+function Setupcommands(bot){
     bot.setMyCommands(mycmds);
 }
-
-const dice = require('./Dice');
+const Dice = require('./Dice');
 function CommandHandler(bot,msg) {
-    console.log(msg);
-
     try{
         switch(msg.text){
             case '/start':
-                if(msg.chat.type == 'private'){
-                    dice(bot,msg);
-                }
+                bot.sendMessage(msg.chat.id, 'Welcome to the bot!');
                 break;
             case '/info':
                 bot.sendMessage(msg.chat.id, 'Info');
                 break;
             case '/help':
                 bot.sendMessage(msg.chat.id, 'Help');
+                break;
+            case '/dice':
+                bot.sendDice(msg.chat.id);
                 break;
             default:
                 bot.sendMessage(msg.chat.id, 'Default');
@@ -32,5 +30,5 @@ function CommandHandler(bot,msg) {
         console.log(err);
     }
 }
-module.exports = setupcommands;
+module.exports = Setupcommands;
 module.exports = CommandHandler;
