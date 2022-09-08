@@ -10,7 +10,12 @@ function Setupcommands(bot){
 var enableecho = false;
 function CommandHandler(bot,msg) {
     if(enableecho)
+    {
+        let iscommand = msg.text.startsWith('/');
+        if(!iscommand)
         bot.sendMessage(msg.chat.id, msg.text);
+    }
+    
     try{
         switch(msg.text){
             case '/start':
@@ -30,7 +35,7 @@ function CommandHandler(bot,msg) {
                 bot.sendMessage(msg.chat.id, `Echo is ${enableecho?'enabled':'disabled'}`);
                 break;
             default:
-                bot.sendMessage(msg.chat.id, 'Default');
+                bot.sendMessage(msg.chat.id, 'Unknown command');
                 break;
         }
     } catch (err) {
