@@ -6,8 +6,11 @@ const mycmds = [
 function Setupcommands(bot){
     bot.setMyCommands(mycmds);
 }
-const Dice = require('./Dice');
+
+var enableecho = false;
 function CommandHandler(bot,msg) {
+    if(enableecho)
+        bot.sendMessage(msg.chat.id, msg.text);
     try{
         switch(msg.text){
             case '/start':
@@ -22,6 +25,10 @@ function CommandHandler(bot,msg) {
             case '/dice':
                 bot.sendDice(msg.chat.id);
                 break;
+            case '/echo':
+                enableecho = !enableecho;
+                bot.sendMessage(msg.chat.id, `Echo is ${enableecho?'enabled':'disabled'}`);
+                break;
             default:
                 bot.sendMessage(msg.chat.id, 'Default');
                 break;
@@ -32,3 +39,4 @@ function CommandHandler(bot,msg) {
 }
 module.exports = Setupcommands;
 module.exports = CommandHandler;
+module.exports.enableecho = enableecho
